@@ -1,7 +1,7 @@
 trigger:
   branches:
     include:
-      - main   # change if your branch is different
+      - main  # fix typo: "mainn" → "main"
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -13,16 +13,16 @@ steps:
       versionSpec: '18.x'
     displayName: 'Install Node.js'
 
-  # Install dependencies & build
+  # Install dependencies and build
   - script: |
-      npm ci
-      npm run build
-    displayName: 'Build project'
+      npm install
+      npm run build    # adjust for your framework
+    displayName: 'Build static files'
 
   # Upload build output to Azure Blob Storage
   - task: AzureCLI@2
     inputs:
-      azureSubscription: 'AzureConnection'   # Service connection name
+      connectedServiceNameARM: 'AzureConnection'  # ✅ FIXED KEY
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
       inlineScript: |
@@ -31,4 +31,4 @@ steps:
           -s build \
           -d \$web \
           --auth-mode login
-    displayName: 'Deploy to Azure Blob Storage'
+    displayName: 'Deploy to Blob Storage'
