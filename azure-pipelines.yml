@@ -22,7 +22,7 @@ steps:
   # Upload build output to Azure Blob Storage
   - task: AzureCLI@2
     inputs:
-      connectedServiceNameARM: 'AzureConnection'  # ✅ FIXED KEY
+      connectedServiceNameARM: 'KarthikBanada'  # ✅ FIXED KEY
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
       inlineScript: |
